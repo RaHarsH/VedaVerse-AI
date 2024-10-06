@@ -1,9 +1,11 @@
 import React from 'react'
 
-const page = () => {
+const SignInPage = () => {
   return (
-    <div>This is Sign in page</div>
+    <>
+        <div className='h-screen w-full text-8xl flex justify-center items-center'>Sign in Page</div>
+    </>
   )
 }
 
-export default page
+export default SignInPage
