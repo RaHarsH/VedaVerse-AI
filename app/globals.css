@@ -7,3 +7,25 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Custom scroll bar for side menu bar in the search page */
+
+.search-history-container::-webkit-scrollbar {
+  width: 0.5px;
+}
+
+.search-history-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4); 
+  border-radius: 1px;
+}
+
+.search-history-container::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1); 
+  border-radius: 1px;
+}
+
+/* .search-history-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.4) rgba(0, 0, 0, 0.1);
+} */
+
+

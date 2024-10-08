@@ -31,16 +31,16 @@ const Navbar = () => {
     useEffect(() => {
         if (navMenu.current) {
             if (isOpen) {
-                gsap.to(navMenu.current, { x: 0, duration: 0.5, ease: 'power2.out' })
+                gsap.to(navMenu.current, { x: 0, duration: 0.2, ease: 'power4.out' })
             } else {
-                gsap.to(navMenu.current, { x: '100%', duration: 0.5, ease: 'power2.out' })
+                gsap.to(navMenu.current, { x: '100%', duration: 0.2, ease: 'power4.out' })
             }
         }
     }, [isOpen])
 
     return (
         <nav className='relative'>
-            <div className='navbar w-full z-50 fixed top-0 left-0 flex items-center justify-between md:justify-around py-5 px-14 backdrop-blur-[10px] border border-gray-300'>
+            <div className='navbar w-full z-50 fixed top-0 left-0 flex items-center justify-between md:justify-around py-5 px-14 backdrop-blur-[10px] border-b border-gray-300'>
                 <div className='logo-container'>
                     <Link href='/' className='flex justify-evenly items-center gap-4'>
                         <p>Logo</p>

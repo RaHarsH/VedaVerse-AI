@@ -1,9 +1,13 @@
 import React from 'react'
+import SideMenubar from '../components/SideMenubar'
 
 const layout = ({children}) => {
   return (
     <>
-    {children}
+    <div className='flex'>
+      <SideMenubar />
+      {children}
+    </div>
     </>
   )
 }
