@@ -1,9 +1,10 @@
-import { useRouter } from 'next/router';
+'use client'
+import { useSearchParams } from "next/navigation";
 import React from 'react';
 
 const SearchDetails = () => {
-  const router = useRouter();
-  const { searchTerm } = router.query; 
+  const searchParams = useSearchParams();
+  const searchTerm = searchParams.get('query');
 
   return (
     <div className='h-screen w-full flex flex-col justify-center items-center'>
@@ -14,10 +15,8 @@ const SearchDetails = () => {
         
         <h2 className='text-2xl font-bold'>Results:</h2>
         
-        <ul>
+        <ul className='w-[500px]'>
           <li>Result 1 for "{searchTerm}"</li>
-          <li>Result 2 for "{searchTerm}"</li>
-          <li>Result 3 for "{searchTerm}"</li>
         </ul>
       </div>
     </div>

@@ -22,7 +22,7 @@ const SearchPage = () => {
             onChange={(e) => setSearchText(e.target.value)}
           />
           <div className='w-full flex justify-end px-2 py-2'>
-            <Link href={`/searchDetails/${encodeURIComponent(searchText)}`}>
+            <Link href={`search/searchDetails?query=${searchText}`}>
               <button 
                 disabled={isSearchBtnDisabled}
                 className={`${isSearchBtnDisabled ? 'bg-black/30' : 'bg-black'} text-white px-3 py-1 rounded-md`}
