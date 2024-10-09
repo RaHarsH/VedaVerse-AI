@@ -19,6 +19,13 @@ const SearchDetails = () => {
           <li>Result 1 for "{searchTerm}"</li>
         </ul>
       </div>
+
+      <div className='follow-up-search-container flex justify-start items-start w-[90vw] mx-5 md:w-[700px] my-5 border border-gray-200 rounded-2xl h-28 bg-black/5 absolute bottom-0'>
+        <input
+        className='w-full h-16 text-black focus:outline-none placeholder:text-gray-500 bg-gray-50 px-5 py-3'
+        placeholder='Ask follow up...'
+        />
+      </div>
     </div>
   );
 };
