@@ -61,7 +61,7 @@ const SideMenubar = () => {
             </div>
         </div>
 
-        {/* Hamburger menu to toggle the sidemenu bar on smaller devices */}
+        {/* Hamburger menu to toggle the sidemenu bar on smaller devices like mobile phones */}
         <div className='flex lg:hidden flex-col mt-20 relative left-5 cursor-pointer gap-2'>
             <span className='w-7 h-[1.5px] bg-black'></span>
             <span className='w-5 h-[1.5px] bg-black'></span>
