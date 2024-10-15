@@ -8,7 +8,8 @@ app = FastAPI()
 search_engine = AISearchEngine(
     mongodb_uri="your_mongodb_atlas_uri_here",
     db_name="your_database_name",
-    collection_name="your_collection_name"
+    collection_name="your_collection_name",
+    ollama_model="llama2"  # You can change this to any model available in your Ollama setup
 )
 
 class SearchQuery(BaseModel):
@@ -24,7 +25,7 @@ async def search(query: SearchQuery):
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to the AI-powered search engine API"}
+    return {"message": "Welcome to the AI-powered search engine API using Ollama and Nomic embeddings"}
 
 if __name__ == "__main__":
     import uvicorn

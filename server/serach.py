@@ -2,10 +2,11 @@ import pymongo
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from sentence_transformers import SentenceTransformer
-from transformers import AutoTokenizer, AutoModelForCausalLM
+import requests
+import json
 
 class AISearchEngine:
-    def __init__(self, mongodb_uri, db_name, collection_name):
+    def __init__(self, mongodb_uri, db_name, collection_name, ollama_model="llama2"):
         # MongoDB Atlas connection
         self.client = MongoClient(mongodb_uri, server_api=ServerApi('1'))
         self.db = self.client[db_name]
@@ -14,9 +15,9 @@ class AISearchEngine:
         # Initialize Nomic embeddings model
         self.embeddings_model = SentenceTransformer('nomic-ai/nomic-embed-text-v1')
 
-        # Initialize open-source LLM (e.g., GPT-2)
-        self.tokenizer = AutoTokenizer.from_pretrained("gpt2")
-        self.model = AutoModelForCausalLM.from_pretrained("gpt2")
+        # Ollama model configuration
+        self.ollama_model = ollama_model
+        self.ollama_api_url = "http://localhost:11434/api/generate"
 
     def embed_query(self, query):
         return self.embeddings_model.encode([query])[0]
@@ -39,9 +40,20 @@ class AISearchEngine:
 
     def generate_response(self, query, context):
         prompt = f"Query: {query}\nContext: {context}\nAnswer:"
-        input_ids = self.tokenizer.encode(prompt, return_tensors="pt")
-        output = self.model.generate(input_ids, max_length=100, num_return_sequences=1, no_repeat_ngram_size=2)
-        return self.tokenizer.decode(output[0], skip_special_tokens=True)
+        
+        payload = {
+            "model": self.ollama_model,
+            "prompt": prompt,
+            "stream": False
+        }
+        
+        response = requests.post(self.ollama_api_url, json=payload)
+        
+        if response.status_code == 200:
+            result = response.json()
+            return result['response']
+        else:
+            raise Exception(f"Error from Ollama API: {response.text}")
 
     def search(self, query):
         search_results = self.semantic_search(query)
